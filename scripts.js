@@ -149,3 +149,121 @@ function processPembelianBulanan() {
     document.getElementById("message").textContent = "Saldo tidak cukup.";
   }
 }
+
+function processPembelianBulananSuccess(paket) {
+  const container = document.querySelector(".container");
+  container.innerHTML = `
+        <h2>Proses Pembelian</h2>
+        <p>Sedang memproses pembelian ${paket}...</p>
+    `;
+
+  setTimeout(function () {
+    container.innerHTML = `
+            <h2>Pembelian Berhasil</h2>
+            <p>Paket ${paket} telah berhasil dibeli dan berlaku selama 30 hari.</p>
+        `;
+    showInfoPulsa();
+  }, 2000);
+}
+
+function showHotPromo() {
+  const container = document.querySelector(".container");
+  container.innerHTML = `
+        <h2>Pilih Hot Promo</h2>
+        <ul>
+            <li>1. 15GB - Rp 120.000</li>
+            <li>2. 30GB - Rp 200.000</li>
+            <li>3. 50GB - Rp 300.000</li>
+            <li>4. 100GB - Rp 500.000</li>
+        </ul>
+        <input type="text" id="hotpromo-option" placeholder="Pilih Promo">
+        <div class="buttons">
+            <button id="cancelButton">Cancel</button>
+            <button id="confirmHotPromoButton">Beli</button>
+        </div>
+        <div id="message" class="message"></div>
+    `;
+
+  document
+    .getElementById("cancelButton")
+    .addEventListener("click", showMainMenu);
+  document
+    .getElementById("confirmHotPromoButton")
+    .addEventListener("click", processPembelianHotPromo);
+}
+
+function processPembelianHotPromo() {
+  const hotpromoOption = document.getElementById("hotpromo-option").value;
+  let paket, harga;
+
+  switch (hotpromoOption) {
+    case "1":
+      paket = "15GB - Rp 120.000";
+      harga = 120000;
+      break;
+    case "2":
+      paket = "30GB - Rp 200.000";
+      harga = 200000;
+      break;
+    case "3":
+      paket = "50GB - Rp 300.000";
+      harga = 300000;
+      break;
+    case "4":
+      paket = "100GB - Rp 500.000";
+      harga = 500000;
+      break;
+    default:
+      document.getElementById("message").textContent = "Promo tidak valid.";
+      return;
+  }
+
+  if (pulsaBalance >= harga) {
+    pulsaBalance -= harga;
+    processPembelianHotPromoSuccess(paket);
+  } else {
+    document.getElementById("message").textContent = "Saldo tidak cukup.";
+  }
+}
+
+function processPembelianHotPromoSuccess(paket) {
+  const container = document.querySelector(".container");
+  container.innerHTML = `
+        <h2>Proses Pembelian</h2>
+        <p>Sedang memproses pembelian ${paket}...</p>
+    `;
+
+  setTimeout(function () {
+    container.innerHTML = `
+            <h2>Pembelian Berhasil</h2>
+            <p>Paket ${paket} telah berhasil dibeli dan berlaku selama 30 hari.</p>
+        `;
+    showInfoPulsa();
+  }, 2000);
+}
+
+function showPromoInternetTahunan() {
+  const container = document.querySelector(".container");
+  container.innerHTML = `
+        <h2>Pilih Promo Internet Tahunan</h2>
+        <ul>
+            <li>1. Paket 50GB - Rp 150.000</li>
+            <li>2. Paket 100GB - Rp 250.000</li>
+            <li>3. Paket 200GB - Rp 400.000</li>
+            <li>4. Paket 500GB - Rp 700.000</li>
+        </ul>
+        <input type="text" id="tahunan-option" placeholder="Pilih Promo">
+        <div class="buttons">
+            <button id="cancelButton">Cancel</button>
+            <button id="confirmTahunanButton">Beli</button>
+        </div>
+        <div id="message" class="message"></div>
+    `;
+
+  document
+    .getElementById("cancelButton")
+    .addEventListener("click", showMainMenu);
+  document
+    .getElementById("confirmTahunanButton")
+    .addEventListener("click", processPembelianTahunan);
+}
