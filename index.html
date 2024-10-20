@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layanan Pulsa Darurat</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="ussd-menu" id="ussd-menu">
+            <p>Pulsa Rp 225 s.d 12-12-2024, Mau Pulsa Darurat?</p>
+            <ul>
+                <li>1. Iya</li>
+                <li>2. Promo Internet Bulanan</li>
+                <li>3. Hot Promo</li>
+                <li>4. Super Hemat</li>
+                <li>5. Transfer Pulsa</li>
+                <li>6. Info Pulsa</li>
+            </ul>
+            <input type="text" id="ussd-option" placeholder="Pilih Opsi">
+            <div class="buttons">
+                <button id="cancelButton">Cancel</button>
+                <button id="sendButton">Send</button>
+            </div>
+        </div>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
